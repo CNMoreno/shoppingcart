@@ -4,16 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.persistence.*
 
 @Entity
-@Table(name = "product")
-data class Product(
+@Table(name = "cart")
+data class Cart(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
-    var name: String = "",
-    var sku: Long = 0,
-    var description: String = "",
+    val status: String = "",
 
     @OneToMany(
         mappedBy = "product",
@@ -24,6 +22,12 @@ data class Product(
     @JsonIgnoreProperties("product_car", "product", "cart", "id", "quality")
 
     var product_car: List<ProductCart> = emptyList(),
+){
+    override fun toString(): String {
+        return "Cart(id=$id, status='$status', product_car=$product_car)"
+    }
+}
 
 
-    )
+
+

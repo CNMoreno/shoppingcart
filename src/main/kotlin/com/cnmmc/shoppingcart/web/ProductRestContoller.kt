@@ -51,7 +51,7 @@ class ProductRestContoller {
     }
 
     @PutMapping("/")
-    fun update( @RequestBody product: Product): ResponseEntity<Any> {
+    fun update(@RequestBody product: Product): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok().body(productBusiness!!.save(product))
         } catch (e: BusinessException) {
